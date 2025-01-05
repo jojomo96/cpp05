@@ -1,40 +1,100 @@
 #include <iostream>
-
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
-int main() {
+void testFormCreation() {
 	try {
-		Bureaucrat b1("Alice", 50);
-		std::cout << b1 << std::endl;
-
-		Bureaucrat b2("Bob", 1);
-		std::cout << b2 << std::endl;
-
-		// Test assignment operator
-		b1 = b2;
-		std::cout << "After assignment, b1: " << b1 << std::endl;
-
-		Bureaucrat b3(b2);
-		b3.incrementGrade(-1);
-		std::cout << "After copy, b3: " << b3 << std::endl;
-
-		// Test grade too high exception
-		try {
-			Bureaucrat b3("Charlie", 0);
-		} catch (const Bureaucrat::GradeTooHighException &e) {
-			std::cerr << "Exception: " << e.what() << std::endl;
-		}
-
-		// Test grade too low exception
-		try {
-			Bureaucrat b4("Dave", 151);
-		} catch (const Bureaucrat::GradeTooLowException &e) {
-			std::cerr << "Exception: " << e.what() << std::endl;
-		}
-
+		Form f1("Form1", 1, 1);
+		std::cout << f1 << std::endl;
 	} catch (const std::exception &e) {
-		std::cerr << "Exception: " << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 
+	try {
+		Form f2("Form2", 150, 150);
+		std::cout << f2 << std::endl;
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+
+	try {
+		Form f3("Form3", 0, 1); // Should throw GradeTooHighException
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+
+	try {
+		Form f4("Form4", 1, 151); // Should throw GradeTooLowException
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+}
+
+void testFormSigning() {
+	Bureaucrat b1("Alice", 1);
+	Bureaucrat b2("Bob", 150);
+
+	Form f1("Form1toBeSigned", 1, 1);
+	Form f2("Form2toBeSigned", 150, 150);
+
+	try {
+		f1.beSigned(b1); // Should succeed
+		std::cout << f1 << std::endl;
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+
+	try {
+		f1.beSigned(b2); // Should throw GradeTooLowException
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+
+	try {
+		f2.beSigned(b2); // Should succeed
+		std::cout << f2 << std::endl;
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+
+	try {
+		f2.beSigned(b1); // Should succeed
+		std::cout << f2 << std::endl;
+	} catch (const std::exception &e) {
+		std::cerr << e.what() << std::endl;
+	}
+}
+
+void testSignForm() {
+	Bureaucrat b1("Alice", 1);
+	Bureaucrat b2("Bob", 150);
+
+	Form f1("Form1", 1, 1);
+	Form f2("Form2", 150, 150);
+
+	std::cout << std::endl;
+	std::cout << "Expected: Alice signs Form1" << std::endl;
+	f1.signForm(b1); // Should succeed
+	std::cout << std::endl;
+
+	std::cout << "Expected: Bob cannot sign Form1 because Grade is too low!" << std::endl;
+	f1.signForm(b2); // Should throw GradeTooLowException
+	std::cout << std::endl;
+
+	std::cout << "Expected: Bob signs Form2" << std::endl;
+	f2.signForm(b2); // Should succeed
+	std::cout << std::endl;
+
+	std::cout << "Expected: Alice signs Form2" << std::endl;
+	f2.signForm(b1); // Should succeed
+	std::cout << std::endl;
+}
+
+
+
+int main() {
+	testFormCreation();
+	testFormSigning();
+	testSignForm();
 	return 0;
 }
