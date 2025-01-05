@@ -14,13 +14,13 @@ public:
 
 	Bureaucrat &operator=(Bureaucrat const &rhs);
 
-	[[nodiscard]] std::string get_name() const;
+	[[nodiscard]] std::string getName() const;
 
-	[[nodiscard]] int get_grade() const;
+	[[nodiscard]] int getGrade() const;
 
-	void increment_grade(int amount);
+	void incrementGrade(int amount);
 
-	void decrement_grade(int amount);
+	void decrementGrade(int amount);
 
 	class GradeTooHighException final : public std::exception {
 	public:

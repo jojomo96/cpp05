@@ -15,7 +15,7 @@ int main() {
 		std::cout << "After assignment, b1: " << b1 << std::endl;
 
 		Bureaucrat b3(b2);
-		b3.increment_grade(-1);
+		b3.incrementGrade(-1);
 		std::cout << "After copy, b3: " << b3 << std::endl;
 
 		// Test grade too high exception
