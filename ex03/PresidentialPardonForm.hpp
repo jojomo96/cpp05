@@ -1,8 +1,9 @@
-
 #pragma once
 #include "AForm.hpp"
 
-class PresidentialPardonForm final : public AForm{
+class PresidentialPardonForm final : public AForm {
+	PresidentialPardonForm();
+
 public:
 	explicit PresidentialPardonForm(const std::string &target);
 

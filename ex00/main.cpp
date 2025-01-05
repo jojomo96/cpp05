@@ -31,7 +31,6 @@ int main() {
 		} catch (const Bureaucrat::GradeTooLowException &e) {
 			std::cerr << "Exception: " << e.what() << std::endl;
 		}
-
 	} catch (const std::exception &e) {
 		std::cerr << "Exception: " << e.what() << std::endl;
 	}

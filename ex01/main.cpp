@@ -91,7 +91,6 @@ void testSignForm() {
 }
 
 
-
 int main() {
 	testFormCreation();
 	testFormSigning();

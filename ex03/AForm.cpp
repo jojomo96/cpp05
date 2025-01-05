@@ -4,6 +4,9 @@
 
 #include "Bureaucrat.hpp"
 
+AForm::AForm() : _name("default"), _target("default"), _signed(false), _signGrade(150), _execGrade(150) {
+}
+
 AForm::AForm(std::string name, const int signGrade, const int execGrade, std::string target)
 	: _name(std::move(name)), _target(std::move(target)), _signed(false), _signGrade(signGrade), _execGrade(execGrade) {
 	if (signGrade < 1 || execGrade < 1) {

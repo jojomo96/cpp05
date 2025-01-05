@@ -3,7 +3,9 @@
 
 class Bureaucrat {
 	const std::string _name;
-	int _grade;
+	int _grade = 0;
+
+	Bureaucrat();
 
 public:
 	explicit Bureaucrat(std::string name, int grade);

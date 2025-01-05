@@ -9,6 +9,8 @@ class Form {
 	const int _signGrade;
 	const int _execGrade;
 
+	Form();
+
 public:
 	explicit Form(std::string name, int signGrade, int execGrade);
 

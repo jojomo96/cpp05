@@ -9,6 +9,9 @@ class AForm {
 	bool _signed;
 	const int _signGrade;
 	const int _execGrade;
+
+	AForm();
+
 public:
 	explicit AForm(std::string name, int signGrade, int execGrade, std::string target);
 

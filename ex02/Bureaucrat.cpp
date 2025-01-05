@@ -1,5 +1,8 @@
 #include "Bureaucrat.hpp"
 
+Bureaucrat::Bureaucrat() : _name("default"), _grade(150) {
+}
+
 Bureaucrat::Bureaucrat(std::string name, const int grade) : _name(std::move(name)), _grade(grade) {
 	if (grade < 1) {
 		throw GradeTooHighException();

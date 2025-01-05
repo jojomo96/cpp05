@@ -4,6 +4,9 @@
 
 #include "Bureaucrat.hpp"
 
+Form::Form() : _name("default"), _signed(false), _signGrade(150), _execGrade(150) {
+}
+
 Form::Form(std::string name, const int signGrade, const int execGrade)
 	: _name(std::move(name)), _signed(false), _signGrade(signGrade), _execGrade(execGrade) {
 	if (signGrade < 1 || execGrade < 1) {
@@ -67,6 +70,6 @@ const char *Form::GradeTooLowException::what() const noexcept {
 
 std::ostream &operator<<(std::ostream &os, const Form &form) {
 	os << "Form " << form.getName() << ", sign grade " << form.getSignGrade()
-	   << ", execution grade " << form.getExecGrade() << ", signed: " << (form.isSigned() ? "yes" : "no");
+			<< ", execution grade " << form.getExecGrade() << ", signed: " << (form.isSigned() ? "yes" : "no");
 	return os;
 }

@@ -2,6 +2,8 @@
 #include "AForm.hpp"
 
 class ShrubberyCreationForm final : public AForm {
+	ShrubberyCreationForm();
+
 public:
 	explicit ShrubberyCreationForm(const std::string &target);
 

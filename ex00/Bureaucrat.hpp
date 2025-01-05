@@ -5,6 +5,8 @@ class Bureaucrat {
 	const std::string _name;
 	int _grade;
 
+	Bureaucrat();
+
 public:
 	explicit Bureaucrat(std::string name, int grade);
 
